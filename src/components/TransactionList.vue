@@ -1,16 +1,5 @@
 <script setup lang="ts">
-// ─── ref vs reactive: la pregunta más común en entrevistas Vue 3
-//
-// ref()      → para valores primitivos (string, number, boolean).
-//              Accedes al valor con .value en JS, pero NO en el template.
-//
-// reactive() → para objetos. No necesitas .value.
-//              Cuidado: si desestructuras, pierdes reactividad.
-//
-// Regla práctica: usa ref() por defecto. reactive() cuando tienes un objeto
-// con muchos campos relacionados que siempre se usan juntos.
-
-import { ref, reactive, computed, watch } from 'vue'
+import { ref, reactive, computed } from 'vue'
 import type { Transaction } from '@/types'
 
 const props = defineProps<{
@@ -39,24 +28,6 @@ const filteredTransactions = computed(() => {
   })
 })
 
-// watch() observa cambios reactivos y ejecuta un efecto secundario.
-// Equivale al `watch: {}` de Vue 2, pero más explícito.
-//
-// watch(source, callback, options)
-// - immediate: true → ejecuta el callback también en el primer render
-// - deep: true       → observa cambios anidados en objetos
-watch(searchQuery, (newVal, oldVal) => {
-  console.log(`Search changed: "${oldVal}" → "${newVal}"`)
-})
-
-// Para observar un objeto reactivo completo usas una función getter
-// o pasas el objeto directamente con { deep: true }
-watch(
-  () => ({ ...filters }),
-  (newFilters) => {
-    console.log('Filters updated:', newFilters)
-  },
-)
 
 function clearFilters() {
   searchQuery.value = ''

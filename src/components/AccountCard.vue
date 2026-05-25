@@ -1,20 +1,12 @@
 <script setup lang="ts">
-// ─── Vue 3: <script setup> es el azúcar sintáctico de setup()
-// Todo lo que declares aquí es automáticamente accesible en el template.
-// En Vue 2 habrías usado data() + computed + methods separados.
-
 import { computed } from 'vue'
 import type { Account } from '@/types'
 
-// defineProps reemplaza la opción `props: {}` de Vue 2.
-// Con TypeScript, tipas las props directamente — sin runtime validators extra.
 const props = defineProps<{
   account: Account
   isLoading?: boolean
 }>()
 
-// computed() toma una función y devuelve un valor reactivo de solo lectura.
-// Equivalente exacto al `computed: {}` de Vue 2, pero como función.
 const formattedBalance = computed(() =>
   new Intl.NumberFormat('de-DE', {
     style: 'currency',

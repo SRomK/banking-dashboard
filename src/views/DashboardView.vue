@@ -1,17 +1,4 @@
 <script setup lang="ts">
-// ─── Lifecycle hooks en Vue 3
-//
-// En Vue 2:  mounted() { ... }
-// En Vue 3:  onMounted(() => { ... })
-//
-// Se importan y se llaman como funciones dentro de setup.
-// Todos los hooks de Vue 2 tienen su equivalente con prefijo "on":
-//   created    → no existe (el código en setup() ya es "created")
-//   mounted    → onMounted
-//   updated    → onUpdated
-//   unmounted  → onUnmounted  (antes era "destroyed")
-//   beforeMount, beforeUpdate, beforeUnmount también existen
-
 import { ref, onMounted } from 'vue'
 import AccountCard from '@/components/AccountCard.vue'
 import TransactionList from '@/components/TransactionList.vue'
@@ -21,15 +8,12 @@ const account = ref<Account | null>(null)
 const transactions = ref<Transaction[]>([])
 const isLoading = ref(true)
 
-// onMounted: se ejecuta cuando el componente está montado en el DOM.
-// Ideal para llamadas a API — exactamente como en Vue 2.
 onMounted(async () => {
   await loadDashboardData()
 })
 
 async function loadDashboardData() {
   isLoading.value = true
-  // Simula una llamada a API con delay (reemplazaremos con fetch real más adelante)
   await new Promise((resolve) => setTimeout(resolve, 1000))
 
   account.value = {
