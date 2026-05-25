@@ -20,10 +20,14 @@ A banking dashboard built with Vue 3, TypeScript, and Pinia — inspired by the 
 
 ## Setup
 
+Requires Node.js 18+
+
 ```sh
 npm install
 npm run dev
 ```
+
+App runs at `http://localhost:5173`
 
 ## Testing
 
