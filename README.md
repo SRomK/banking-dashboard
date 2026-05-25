@@ -1,4 +1,4 @@
-# DKB Banking Dashboard
+# Banking Dashboard
 
 A banking dashboard built with Vue 3, TypeScript, and Pinia — inspired by the kind of customer-facing interfaces used in digital banking products.
 
